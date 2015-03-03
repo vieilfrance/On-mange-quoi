@@ -1,0 +1,25 @@
+
+<div class="container container-span">
+	<div class="row">
+		<div class="col-md-12">
+			<form role="form" name="add" add id="add" ng-submit="addMeal()">
+
+				<div class="field"><label class="field-label" name="name">Nom</label>
+					<input ng-model="NewMeal.name" type="text" class="field-input" required>
+				</div>
+				<div class="field"><label class="field-label">Type de repas</label>
+					<select ng-model="NewMeal.type" name="line" class="field-input" required ng-options="item.id as item.label for item in types">
+					</select>
+ 				</div>
+				<div class="field"><label class="field-label">Saison</label>
+					<select ng-model="NewMeal.season" name="season" class="field-input" required required ng-options="item.id as item.label for item in seasons">
+					</select>
+ 				</div>
+
+				<div class="right">
+					<input ng-hide="NewMeal.endOfProcess" class="btn btn-material-lime btn-primary" type="submit" value="AJOUTER"/>
+				</div>
+
+		</form>		
+	</div>
+</div>
