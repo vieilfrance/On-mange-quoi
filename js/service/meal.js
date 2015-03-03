@@ -21,4 +21,21 @@ app.service('Meal', function($http, $q, $timeout){
 
     }
 
+    this.get = function() {
+        var deferred = $q.defer();
+        var endpoint = '/api/meal/';
+
+        endpoint=host+endpoint; // test 
+        $http.get(endpoint)
+            .success(function(data, status){
+                this.meal=data;
+                deferred.resolve(this.meal);
+            })
+            .error(function(data, status){
+                deferred.reject(status);
+            })
+        return deferred.promise;
+
+    }
+
 })
