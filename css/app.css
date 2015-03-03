@@ -4,7 +4,7 @@ html, body{
   background-color: #FFF;
 }
 
-html, body, #view , form {
+html, body, form {
   height:100%;  
 }
 
