@@ -10,12 +10,12 @@ app.service('progress', function($q, $timeout){
         indeterminateProgress.start();
         deferred.resolve();
         return deferred.promise;
-        }
+        };
 
     this.stop = function(){
         var deferred = $q.defer();
         indeterminateProgress.end();
         deferred.resolve();
         return deferred.promise;
-    }
+    };
 });

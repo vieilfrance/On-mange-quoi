@@ -6,7 +6,7 @@ $( document ).ready(function() {
 
 	$(".field-input").blur(function(){
 		$parent = $(this).parent();
-		if($(this).val()=='') {
+		if($(this).val()==='') {
 			$parent.removeClass("has-label");
 		} 
 		$parent.removeClass("is-focused");

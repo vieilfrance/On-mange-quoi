@@ -13,7 +13,7 @@ app.controller('statusController', ['$scope', '$timeout',
                 $("#snack").removeClass("snackbar-opened");
                 $("#view").removeClass("waiting");
                 $scope.qStatus = "";
-                }, 3000)
+                }, 3000);
         });
 
         $scope.$on('FlashStatus', function (event, args) {
@@ -23,7 +23,7 @@ app.controller('statusController', ['$scope', '$timeout',
                     $("#snack").removeClass("snackbar-opened");
                     $("#view").removeClass("waiting");
                     $scope.qStatus = "";
-                }, 3000)
+                }, 3000);
         });
 
         $scope.$on('ACKStatus', function (event, args) {
@@ -42,7 +42,7 @@ app.controller('statusController', ['$scope', '$timeout',
                 $scope.qStatus = "";
                 $scope.qActionName = "";
                 $scope.qAction = "";
-                }, 0)
-           }
+                }, 0);
+           };
     }
 ]);

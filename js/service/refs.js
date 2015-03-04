@@ -14,8 +14,8 @@ app.service('Refs', function($http, $q, $timeout){
             })
             .error(function(data, status){
                 deferred.reject(status);
-            })
+            });
         return deferred.promise;
     };
 
-})
+});

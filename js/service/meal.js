@@ -12,14 +12,14 @@ app.service('Meal', function($http, $q, $timeout){
                 $timeout(function(){
                     console.log(data.success);
                     deferred.resolve(data.success);
-                }, 0)
+                }, 0);
             })
             .error(function(data, status){
                 deferred.reject(data);
-            })
+            });
         return deferred.promise;
 
-    }
+    };
 
     this.get = function() {
         var deferred = $q.defer();
@@ -33,9 +33,9 @@ app.service('Meal', function($http, $q, $timeout){
             })
             .error(function(data, status){
                 deferred.reject(status);
-            })
+            });
         return deferred.promise;
 
-    }
+    };
 
-})
+});

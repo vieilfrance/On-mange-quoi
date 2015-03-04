@@ -23,7 +23,7 @@ app.controller("AddMealController", function($scope, $rootScope, $location, prog
     Refs.getRefs().then(function(refs){
         $scope.types=refs.refs[0].ref;
         $scope.seasons=refs.refs[2].ref;
-    })
+    });
 
     $scope.addMeal = function() {
         progress.start();
@@ -33,15 +33,15 @@ app.controller("AddMealController", function($scope, $rootScope, $location, prog
                 $location.path("/add");
                 $scope.NewMeal="";
                 $rootScope.$broadcast("FlashStatus","Idée de repas ajouté !"  );
-                })
+                });
         }, function(reason) {
                 progress.stop().then(function() {
                     error="";
                     console.log(error);
                     $rootScope.$broadcast("FlashStatus","erreur : "+error  );
-                })
-        })
-    }
+                });
+        });
+    };
 
 });
 
@@ -53,14 +53,14 @@ app.controller("MealFinder", function($scope,$rootScope, Meal) {
     $scope.loadRecipe = function () {
         Meal.get().then(function(meal){
             $(".recipe").fadeOut("fast", function() {
-                $(".recipe").html("<div class='recipe-filed-title' id='name'>"+meal['results'][0]['name']+"</div><div class='recipe-filed' id='type'>C'est une recette de <b>"+meal['results'][0]['type']+"</b></div>");
+                $(".recipe").html("<div class='recipe-filed-title' id='name'>"+meal.results[0].name+"</div><div class='recipe-filed' id='type'>C'est une recette de <b>"+meal.results[0].type+"</b></div>");
                 });
             $(".recipe").fadeIn("fast");
         }, function(reason) {
                     error="";
                     $rootScope.$broadcast("FlashStatus","erreur : "+error  );
-        })
-    }
+        });
+    };
 
 $scope.loadRecipe();
 
