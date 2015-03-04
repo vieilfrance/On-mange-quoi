@@ -81,17 +81,32 @@ class Api extends REST_Controller
 	}
 
 	function Meal_delete() { // supprimer de manière logique un repas.
+    $this->load->model('Meal');
+    $meal=array();
+    $meal['id']=$this->delete('id');
 
+    $the_id=false;
+    if (isset($meal['id'])) {
+      $the_id=$this->Meal->suppr_meal($meal['id']);
+    }
+    if ($the_id)
+    {
+      $this->response(array('success' => $the_id), 200);      
+    }
+    else
+    {
+      $this->response(array('error' => 'suppression failed'), 500);
+    }
+    
 	}
 
 	function Refs_get() { // liste des référentiels. Le résultat est une liste de liste, pour éviter les multiples appels.
-		// TODO
 		$this->load->model('Refs');
 		$refs = $this->Refs->get_refs();
 	    if($refs)
 	    {
 		$this->response(array("results"=>$refs),200); // on doit avoir une réponse d'une idée à manger au hasard sans limitation mais en tenant compte de la saison. Faut prévoir une marge si on arrive en fin de saison pour aller choper un peu sur la saison d'apres
-		// prévoir qu'on puisse filtrer sur la 'note' (sucré , salé)
+		// TODO prévoir qu'on puisse filtrer sur la 'note' (sucré , salé)
 	    }
 	    else
 	    {

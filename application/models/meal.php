@@ -2,6 +2,7 @@
 
 class Meal extends CI_Model {
 
+    var $id;
     var $title   = '';
     var $type = '';
     var $season    = '';
@@ -62,12 +63,25 @@ class Meal extends CI_Model {
         return $this->db->insert_id();
     }
 
+    function suppr_meal($id)
+    {
+        $this->load->database();
+        $sql ="DELETE FROM RECIPES WHERE RECIPES.id = ".$id ;
+        $query = $this->db->query($sql);
+        if ($this->db->affected_rows()!=0)
+            return true;
+        else
+            return false;
+
+    }
+
+
     function meal_format($row)
     {
         return array(
-                    'id'            =>  $row['id'],
-                    'name'          =>  $row['name'],
-                    'type'   =>  $row['type'] 
+                    'id'        =>  $row['id'],
+                    'name'      =>  $row['name'],
+                    'type'      =>  $row['type'] 
                     );
     }
 
