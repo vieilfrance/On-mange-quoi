@@ -315,6 +315,7 @@ abstract class REST_Controller extends CI_Controller
                 $this->_check_whitelist_auth();
             }
         }
+    header('Access-Control-Allow-Origin: *');
     }
 
     /**

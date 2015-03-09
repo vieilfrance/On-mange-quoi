@@ -38,4 +38,21 @@ app.service('Meal', function($http, $q, $timeout){
 
     };
 
+    this.list = function() {
+        var deferred = $q.defer();
+        var endpoint = '/api/meals/';
+
+        endpoint=host+endpoint; // test 
+        $http.get(endpoint)
+            .success(function(data, status){
+                this.meal=data;
+                deferred.resolve(this.meal);
+            })
+            .error(function(data, status){
+                deferred.reject(status);
+            });
+        return deferred.promise;
+
+    };
+
 });

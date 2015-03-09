@@ -7,6 +7,10 @@ app.config(['$routeProvider',
                     templateUrl: 'templates/add.html',
                     controller: 'AddMealController'
                 })
+                .when('/list', {
+                    templateUrl: 'templates/list.html',
+                    controller: 'ListController'
+                })
                 .when('/', {
                     templateUrl: 'templates/index.html',
                     controller: 'IndexController'
@@ -48,7 +52,17 @@ app.controller("AddMealController", function($scope, $rootScope, $location, prog
 app.controller("IndexController", function($scope) {
 });
 
-app.controller("MealFinder", function($scope,$rootScope, Meal) {
+app.controller("ListController", function($scope,$rootScope,Meal) {
+$scope.meals=Meal.list().then(function(meals){
+    console.log(meals);
+    $scope.meals=meals.results;
+   }, function(reason) {
+        $rootScope.$broadcast("FlashStatus","error : "+reason);
+});
+
+});
+
+app.controller("MealFinder", function($scope,$rootScope,Meal) {
 
     $scope.loadRecipe = function () {
         Meal.get().then(function(meal){

@@ -39,7 +39,23 @@ class Meal extends CI_Model {
     //346 - 365 : hiver 
 
 
-    $sql = "SELECT RECIPES.id, RECIPES.name, REF_TYPE.libelle as 'type' FROM RECIPES,REF_TYPE WHERE RECIPES.type=REF_TYPE.id AND ((RECIPES.season/ ".$seasonId.")%2)>0 ORDER BY RANDOM() LIMIT 1";
+    $sql = "SELECT RECIPES.id, RECIPES.name, REF_TYPE.libelle as 'type', REF_SEASON.libelle as 'season'  FROM RECIPES,REF_TYPE, REF_SEASON WHERE RECIPES.IS_DELETED ISNULL AND RECIPES.type=REF_TYPE.id AND ((RECIPES.season/ '.$seasonId.')%2)>0  AND RECIPES.season=REF_SEASON.id ORDER BY RANDOM() LIMIT 1";
+    
+    $query = $this->db->query($sql, $param);
+    $results = $query->result_array();
+    foreach ($results as $row) {
+        $meals[] = $this->meal_format($row);
+    }        
+    return $meals;
+    }
+
+    function get_meals()
+    {
+        $this->load->database();
+        $meals=array();
+        $param=array();
+
+    $sql = "SELECT RECIPES.id, RECIPES.name, REF_TYPE.libelle as 'type', REF_SEASON.libelle as 'season' FROM RECIPES,REF_TYPE, REF_SEASON WHERE RECIPES.IS_DELETED ISNULL AND RECIPES.type=REF_TYPE.id AND RECIPES.season=REF_SEASON.id";
     
     $query = $this->db->query($sql, $param);
     $results = $query->result_array();
@@ -55,7 +71,7 @@ class Meal extends CI_Model {
         $data = array(
                'name'         => $name ,
                'type'         => $type,
-//               'datetime'     => $add_date->format('Y-m-d H:i:s'),
+               'created'     => $datetime->format('Y-m-d H:i:s'),
                'season'   => $season
             );
         $sql = $this->db->insert_string('recipes', $data);
@@ -63,10 +79,11 @@ class Meal extends CI_Model {
         return $this->db->insert_id();
     }
 
-    function suppr_meal($id)
+    function suppr_meal($id,$datetime) 
     {
         $this->load->database();
-        $sql ="DELETE FROM RECIPES WHERE RECIPES.id = ".$id ;
+        //$sql ="DELETE FROM RECIPES WHERE RECIPES.id = ".$id ; // ne pas faire de delete physique mais logique. 
+        $sql= "UPDATE RECIPES SET is_deleted = \"".$datetime->format('Y-m-d H:i:s')."\" WHERE RECIPES.ID=".$id; // s'il est déjà supprimé, ,ne pas dire ok mais un message d'info
         $query = $this->db->query($sql);
         if ($this->db->affected_rows()!=0)
             return true;
@@ -81,7 +98,8 @@ class Meal extends CI_Model {
         return array(
                     'id'        =>  $row['id'],
                     'name'      =>  $row['name'],
-                    'type'      =>  $row['type'] 
+                    'type'      =>  $row['type'],
+                    'season'    =>  $row['season']
                     );
     }
 

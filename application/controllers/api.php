@@ -34,8 +34,18 @@ class Api extends REST_Controller
 	    }
 	}
 
-	function Meals_get(){
-		$this->response(array('error' => 'No result'), 400);
+	function Meals_get(){ // liste des idée à manger avec pagination et limite
+    $this->load->model('Meal');
+    $meal = $this->Meal->get_meals();
+      if($meal)
+      {
+    $this->response(array("results"=>$meal),200); // on doit avoir une réponse d'une idée à manger au hasard sans limitation mais en tenant compte de la saison. Faut prévoir une marge si on arrive en fin de saison pour aller choper un peu sur la saison d'apres
+    // prévoir qu'on puisse filtrer sur la 'note' (sucré , salé)
+      }
+      else
+      {
+        $this->response(array('error' => 'No result'), 400); // TODO c'est pas vraiment ça ... quand y a zéro resultat ca doit être une 200. 
+      }
 	}
 
 	function Meal_post() { // ajouter une idée de repas.
@@ -52,9 +62,6 @@ class Api extends REST_Controller
           break;
         case 'season':
           $meal['season']=$value;
-          break;
-        case 'datetime':
-          $meal['datetime']=$value;
           break;
         default:
           # code...
@@ -84,10 +91,11 @@ class Api extends REST_Controller
     $this->load->model('Meal');
     $meal=array();
     $meal['id']=$this->delete('id');
+    $meal['datetime']=new DateTime('now');
 
     $the_id=false;
     if (isset($meal['id'])) {
-      $the_id=$this->Meal->suppr_meal($meal['id']);
+      $the_id=$this->Meal->suppr_meal($meal['id'],$meal['datetime']);
     }
     if ($the_id)
     {
