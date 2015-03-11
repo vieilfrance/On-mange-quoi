@@ -60,6 +60,17 @@ $scope.meals=Meal.list().then(function(meals){
         $rootScope.$broadcast("FlashStatus","error : "+reason);
 });
 
+    $scope.del=function(meal_id){
+        console.log(meal_id);
+        $("#item-"+meal_id).slideUp(300); 
+        Meal.del(meal_id).then(function(){
+            $rootScope.$broadcast("FlashStatus","Idée de repas supprimé"  );
+        }, function(reason) {
+            $rootScope.$broadcast("FlashStatus","erreur : "+reason  );
+            $("#item-"+meal_id).slideDown(300); 
+        });
+    };
+
 });
 
 app.controller("MealFinder", function($scope,$rootScope,Meal) {

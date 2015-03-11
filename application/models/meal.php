@@ -55,7 +55,7 @@ class Meal extends CI_Model {
         $meals=array();
         $param=array();
 
-    $sql = "SELECT RECIPES.id, RECIPES.name, REF_TYPE.libelle as 'type', REF_SEASON.libelle as 'season' FROM RECIPES,REF_TYPE, REF_SEASON WHERE RECIPES.IS_DELETED ISNULL AND RECIPES.type=REF_TYPE.id AND RECIPES.season=REF_SEASON.id";
+    $sql = "SELECT RECIPES.id, RECIPES.name, REF_TYPE.libelle as 'type', REF_SEASON.libelle as 'season' FROM RECIPES,REF_TYPE, REF_SEASON WHERE RECIPES.IS_DELETED ISNULL AND RECIPES.type=REF_TYPE.id AND RECIPES.season=REF_SEASON.id ORDER BY RECIPES.created DESC";
     
     $query = $this->db->query($sql, $param);
     $results = $query->result_array();

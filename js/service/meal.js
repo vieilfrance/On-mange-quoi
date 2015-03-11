@@ -55,4 +55,19 @@ app.service('Meal', function($http, $q, $timeout){
 
     };
 
+    this.del = function(meal_id) {
+        var deferred = $q.defer();
+        var endpoint = '/api/meal/id/';
+
+        endpoint=host+endpoint; // test 
+        $http.delete(endpoint+meal_id)
+            .success(function(data, status){
+                deferred.resolve(data);
+            })
+            .error(function(data, status){
+                deferred.reject(status);
+            });
+        return deferred.promise;
+    }
+
 });

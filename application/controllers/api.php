@@ -88,9 +88,16 @@ class Api extends REST_Controller
 	}
 
 	function Meal_delete() { // supprimer de manière logique un repas.
+    if($this->get('id')==null)
+    {
+      $this->response(array('error' => 'Give me an id to delete'), 404);
+    }
+    else
+    {
+
     $this->load->model('Meal');
     $meal=array();
-    $meal['id']=$this->delete('id');
+    $meal['id']=$this->get('id');
     $meal['datetime']=new DateTime('now');
 
     $the_id=false;
@@ -105,7 +112,7 @@ class Api extends REST_Controller
     {
       $this->response(array('error' => 'suppression failed'), 500);
     }
-    
+    }
 	}
 
 	function Refs_get() { // liste des référentiels. Le résultat est une liste de liste, pour éviter les multiples appels.
