@@ -3,13 +3,17 @@
 	
 		<div class="col-md-12">
 			<div class="list-group">
-				<div class="list-group-item" ng-repeat ="meal in meals" id="item-{{meal.id}}">
+				<div  ng-repeat ="meal in meals">
+				<div class="list-group-item" id="item-{{meal.id}}">
 <!-- 					<div class="row-action-primary"><img></img></div>
  -->					<div clas="row-content">
-						<label>{{meal.name}}</label><p class="list-group-item-text note">{{meal.type}} pour {{meal.season}}</p>
+						<span class="list-group-item-heading">{{meal.name}}</span><p class="list-group-item-text note">{{meal.type}} pour {{meal.season}}</p>
 						<span class="button btn btn-material-lime btn-flat btn-primary least-content" ng-click="del(meal.id)">Supprimer</span>
 					</div>
 				</div>
+				<div class="list-group-separator">
+				</div>
+			</div>
 			</div>
 
 		</div>

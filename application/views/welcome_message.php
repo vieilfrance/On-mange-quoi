@@ -6,19 +6,19 @@
         <title>On mange quoi ce soir ?</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="/bower_components/angular/angular.js"></script>
-		<script src="/bower_components/angular-route/angular-route.js"></script>
+		<script src="./bower_components/angular/angular.js"></script>
+		<script src="./bower_components/angular-route/angular-route.js"></script>
 
 		<script src="app.js"></script>
-		<script src="js/controller/status.js"></script>
-		<script src="js/service/progress.js"></script>
-		<script src="js/service/refs.js"></script>
-		<script src="js/service/meal.js"></script>
+		<script src="./js/controller/status.js"></script>
+		<script src="./js/service/progress.js"></script>
+		<script src="./js/service/refs.js"></script>
+		<script src="./js/service/meal.js"></script>
 
-		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/material.min.css">
-        <link rel="stylesheet" href="/bower_components/mprogress/build/css/mprogress.css">
-		<link rel="stylesheet" href="/css/app.css">
+		<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./bower_components/bootstrap-material-design/dist/css/material.min.css">
+        <link rel="stylesheet" href="./bower_components/mprogress/build/css/mprogress.css">
+		<link rel="stylesheet" href="./css/app.css">
 
     </head>
     <body>
@@ -31,9 +31,9 @@
 	    </div>  
 	    </div>
 
-		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-		<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    	<script src="/bower_components/mprogress/build/js/mprogress.min.js"></script>
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    	<script src="./bower_components/mprogress/build/js/mprogress.min.js"></script>
     	<link href='http://fonts.googleapis.com/css?family=Roboto:100,300' rel='stylesheet' type='text/css'>
    	</body>
 </html>

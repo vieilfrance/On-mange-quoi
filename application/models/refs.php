@@ -24,7 +24,7 @@ class Refs extends CI_Model {
     $ref=array();
     $param=array();
 
-    $sql = "SELECT id, libelle FROM REF_TYPE";
+    $sql = "SELECT ID, LIBELLE FROM REF_TYPE";
     
     $query = $this->db->query($sql, $param);
     $results = $query->result_array();
@@ -38,7 +38,7 @@ class Refs extends CI_Model {
     $ref=array();
     $param=array();
 
-    $sql = "SELECT id, libelle FROM REF_COMPLEXITY";
+    $sql = "SELECT ID, LIBELLE FROM REF_COMPLEXITY";
     
     $query = $this->db->query($sql, $param);
     $results = $query->result_array();
@@ -52,7 +52,7 @@ class Refs extends CI_Model {
     $ref=array();
     $param=array();
 
-    $sql = "SELECT id, libelle FROM REF_SEASON";
+    $sql = "SELECT ID, LIBELLE FROM REF_SEASON";
     
     $query = $this->db->query($sql, $param);
     $results = $query->result_array();
@@ -67,8 +67,8 @@ class Refs extends CI_Model {
         {
         foreach ($row as $resultPart) {
             $formatedResultPart=Array(
-                'id'=>(is_null($resultPart['id']) ? '' : $resultPart['id']),
-                'label'=>(is_null($resultPart['libelle']) ? '' : $resultPart['libelle'] ));
+                'id'=>(is_null($resultPart['ID']) ? '' : $resultPart['ID']),
+                'label'=>(is_null($resultPart['LIBELLE']) ? '' : $resultPart['LIBELLE'] ));
             array_push($formatedResult,$formatedResultPart);
             }
         }

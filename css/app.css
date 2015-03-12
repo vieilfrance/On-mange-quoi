@@ -440,3 +440,7 @@ color:white;
 transform: scaleY(0);
 transition: transform 0.3s;
 }
+
+.list-group .list-group-separator:before {
+  width:100%;
+}
